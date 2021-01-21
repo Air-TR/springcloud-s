@@ -14,8 +14,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Air-TR/springcloud  # git仓库地址
-          searchPaths: config                         # 搜索远程仓库的文件夹地址
+          uri: https://github.com/Air-TR/springcloud-s  # git仓库地址
+          searchPaths: config                           # 搜索远程仓库的文件夹地址
           # git仓库的用户名和密码，如果为公开仓库，可不填
           username:
           password:
