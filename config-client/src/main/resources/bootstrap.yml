@@ -1,0 +1,38 @@
+# 2.4.0 以上版本暂时没有找到如何配置使 bootstrap.yml 生效
+# 本项目版本 2.3.9，bootstrap.yml 启动正常生效
+server:
+  port: 8770
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      fail-fast: true             # 如果没有读取成功，则执行快速失败
+      discovery:
+        enabled: true             # 开启到eureka服务注册与发现中心查找服务
+        serviceId: config-server  # 表示到eureka服务注册与发现中心查找名字为config-server的服务
+    bus:
+      enabled: true               # 开启 spring cloud bus 服务
+      trace:
+        enabled: true             # 必须设置
+  profiles:
+    active: dev                   # 读取dev环境的配置文件
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh # 此项必须设置，才能在 postman 中访问 bus-refresh PATH

@@ -1,0 +1,24 @@
+server:
+  port: 8769
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+# 从git 仓库读取配置文件的配置项
+# https://github.com/Air-TR/springcloud-s
+# 目录已经上传 config-client-dev.yml 文件，该文件没有指定端口，只配置了 version 和 name 变量
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Air-TR/springcloud  # git仓库地址
+          searchPaths: config                         # 搜索远程仓库的文件夹地址
+          # git仓库的用户名和密码，如果为公开仓库，可不填
+          username:
+          password:
+      label: master # git仓库分支名，这里从master读取
+  application:
+    name: config-server
